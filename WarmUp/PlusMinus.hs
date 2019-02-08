@@ -4,8 +4,8 @@ main :: IO ()
 main = do
         getLine
         args_ <- getLine
-        let args = map read $ words args_ :: [Int]
-        let strArray = solve args :: [Float]
+        let args = map read $ words args_
+        let strArray = solve args
         print (strArray!!0)
         print (strArray!!1)
         print (strArray!!2)
