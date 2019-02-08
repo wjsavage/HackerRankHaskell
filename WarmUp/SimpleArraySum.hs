@@ -1,4 +1,2 @@
-solve (x:y:[]) = sum y
-
 main :: IO ()
-main = interact $ show . solve . map (map read . words) . lines
+main = interact $ show . sum . concat . map (map read . words) . tail . lines

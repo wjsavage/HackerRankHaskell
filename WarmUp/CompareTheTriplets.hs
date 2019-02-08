@@ -1,13 +1,13 @@
-compare' :: [Int] -> [Int] -> (Int, Int)
-compare' [] [] = (0,0)
-compare' (a:as) (b:bs) | a < b = (fst next, snd next + 1)
-                      | a > b = (fst next + 1, snd next)
+compare' :: [Int] -> (Int, Int) -> (Int,Int)
+compare' [] y = y
+compare' (x:xs) (a,b) | x < 0 = (fst next, snd next + 1)
+                      | x > 0 = (fst next + 1, snd next)
                       | otherwise = next
-                        where next  = compare' as bs
+                        where next  = compare' xs (a,b)
 
 solve :: [[Int]] -> String
 solve (as : bs : []) = (show $ fst results) ++ " " ++ (show $ snd results)
-    where results = compare' as bs
+    where results = compare' (zipWith (-) as bs) (0,0)
 
 main :: IO ()
 main = interact $ solve . map (map read . words) . lines
