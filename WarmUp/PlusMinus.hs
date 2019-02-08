@@ -6,15 +6,11 @@ main = do
         args_ <- getLine
         let args = map read $ words args_
         let strArray = solve args
-        print (strArray!!0)
-        print (strArray!!1)
-        print (strArray!!2)
+        mapM_ print strArray
 
 solve :: [Int] -> [Float]
 solve xs = map read (p : n : z : [])
     where (p,n,z) = ratios $ mkTriple xs (0,0,0)
-
-roundTo6 f =  (fromInteger $ round $ f * (10^6)) / (10.0^^6)
 
 roundToStr :: (PrintfArg a, Floating a) => Int -> a -> String
 roundToStr = printf "%0.*f"
